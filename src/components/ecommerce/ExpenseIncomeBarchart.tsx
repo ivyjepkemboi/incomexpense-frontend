@@ -4,6 +4,7 @@ import { ApexOptions } from "apexcharts";
 import { Dropdown } from "../ui/dropdown/Dropdown";
 import { DropdownItem } from "../ui/dropdown/DropdownItem";
 import { MoreDotIcon } from "../../icons";
+import { BASE_URL } from "../../api";
 
 export default function ExpenseIncomeBarchart() {
   const [monthlyExpenses, setMonthlyExpenses] = useState(new Array(12).fill(0));
@@ -20,7 +21,7 @@ export default function ExpenseIncomeBarchart() {
           return;
         }
 
-        const response = await fetch("http://127.0.0.1:5000/api/transactions", {
+        const response = await fetch(`${BASE_URL}/api/transactions`, {
           method: "GET",
           headers: { Authorization: `Bearer ${token}` },
         });

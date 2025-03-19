@@ -10,6 +10,7 @@ import Button from "../../components/ui/button/Button";
 import { BoxIcon } from "../../icons";
 import AppHeader from "../../layout/AppHeader";
 import Transactions from "../../components/transactions/Transactions";
+import { BASE_URL } from "../../api";
 
 export default function Home() {
   const [totalIncome, setTotalIncome] = useState(0);
@@ -26,7 +27,7 @@ export default function Home() {
           return;
         }
 
-        const response = await fetch("http://127.0.0.1:5000/api/transactions", {
+        const response = await fetch(`${BASE_URL}/api/transactions`, {
           method: "GET",
           headers: {
             Authorization: `Bearer ${token}`,

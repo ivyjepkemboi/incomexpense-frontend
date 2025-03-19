@@ -5,6 +5,7 @@ import Label from "../form/Label";
 import Input from "../form/input/InputField";
 import Checkbox from "../form/input/Checkbox";
 import Button from "../ui/button/Button";
+import { BASE_URL } from "../../api";
 
 export default function SignInForm() {
   const [email, setEmail] = useState("");
@@ -18,7 +19,7 @@ export default function SignInForm() {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://127.0.0.1:5000/auth/login", {
+      const response = await fetch(`${BASE_URL}/auth/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -4,6 +4,7 @@ import { BoxIcon } from "../../icons/";
 import { Modal } from "../../components/ui/modal";
 import { ChevronDownIcon } from "@heroicons/react/24/solid";
 import RecentExpenses from "../ecommerce/RecentExpenses";
+import { BASE_URL } from "../../api";
 
 export default function Transactions() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -25,7 +26,7 @@ export default function Transactions() {
     const fetchCategories = async () => {
       try {
         const token = localStorage.getItem("token");
-        const response = await fetch("http://127.0.0.1:5000/api/categories", {
+        const response = await fetch(`${BASE_URL}/api/categories`, {
           method: "GET",
           headers: { Authorization: `Bearer ${token}` },
         });
@@ -123,7 +124,7 @@ export default function Transactions() {
         };
       }
 
-      const response = await fetch("http://127.0.0.1:5000/api/transactions", {
+      const response = await fetch(`${BASE_URL}/api/transactions`, {
         method: "POST",
         headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
         body: JSON.stringify(transactionData),

@@ -5,6 +5,7 @@ import Label from "../form/Label";
 import Input from "../form/input/InputField";
 import Checkbox from "../form/input/Checkbox";
 import Button from "../ui/button/Button";
+import { BASE_URL } from "../../api";
 
 export default function SignUpForm() {
   const [firstName, setFirstName] = useState("");
@@ -20,7 +21,7 @@ export default function SignUpForm() {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://127.0.0.1:5000/auth/register", {
+      const response = await fetch(`${BASE_URL}/auth/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -3,6 +3,7 @@ import { useNavigate } from "react-router";
 import { Table, TableBody, TableCell, TableHeader, TableRow } from "./ui/table";
 import { Modal } from "./ui/modal";
 import Button from "./ui/button/Button";
+import { BASE_URL } from "../api";
 
 export default function ExpensesList() {
   const [expenses, setExpenses] = useState([]);
@@ -27,7 +28,7 @@ export default function ExpensesList() {
         return;
       }
 
-      const response = await fetch("http://127.0.0.1:5000/api/transactions", {
+      const response = await fetch(`${BASE_URL}/api/transactions`, {
         method: "GET",
         headers: { Authorization: `Bearer ${token}` },
       });

@@ -3,6 +3,7 @@ import { useNavigate } from "react-router";
 import { Table, TableBody, TableCell, TableHeader, TableRow } from "../ui/table";
 import Button from "../ui/button/Button";
 import { Modal } from "../ui/modal";
+import { BASE_URL } from "../../api";
 
 export default function RecentIncome() {
   const [income, setIncome] = useState([]);
@@ -24,7 +25,7 @@ export default function RecentIncome() {
           return;
         }
 
-        const response = await fetch("http://127.0.0.1:5000/api/transactions", {
+        const response = await fetch(`${BASE_URL}/api/transactions`, {
           method: "GET",
           headers: { Authorization: `Bearer ${token}` },
         });

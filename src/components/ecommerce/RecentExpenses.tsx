@@ -4,6 +4,7 @@ import { Table, TableBody, TableCell, TableHeader, TableRow } from "../ui/table"
 import { Modal } from "../ui/modal";
 import Button from "../ui/button/Button";
 import { ChevronDownIcon } from "@heroicons/react/24/solid";
+import { BASE_URL } from "../../api";
 
 export default function RecentExpenses() {
   const [expenses, setExpenses] = useState([]);
@@ -46,7 +47,7 @@ const [filteredSubcategories, setFilteredSubcategories] = useState([]);
         return;
       }
 
-      const response = await fetch("http://127.0.0.1:5000/api/transactions", {
+      const response = await fetch(`${BASE_URL}/api/transactions`, {
         method: "GET",
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -88,7 +89,7 @@ const [filteredSubcategories, setFilteredSubcategories] = useState([]);
    const fetchCategories = async () => {
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch("http://127.0.0.1:5000/api/categories", {
+      const response = await fetch(`${BASE_URL}/api/categories`, {
         method: "GET",
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -127,7 +128,7 @@ const [filteredSubcategories, setFilteredSubcategories] = useState([]);
   
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch(`http://127.0.0.1:5000/api/transactions/${selectedExpense.id}`, {
+      const response = await fetch(`${BASE_URL}/transactions/${selectedExpense.id}`, {
         method: "PUT",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -164,7 +165,7 @@ const [filteredSubcategories, setFilteredSubcategories] = useState([]);
   const handleDeleteExpense = async () => {
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch(`http://127.0.0.1:5000/api/transactions/${selectedExpense.id}`, {
+      const response = await fetch(`${BASE_URL}/api/transactions/${selectedExpense.id}`, {
         method: "DELETE",
         headers: { Authorization: `Bearer ${token}` },
       });
