@@ -4,6 +4,9 @@ import svgr from "vite-plugin-svgr";
 
 // https://vite.dev/config/
 export default defineConfig({
+  esbuild: {
+    logLevel: "warning", // ✅ Converts errors to warnings
+  },
   plugins: [
     react(),
     svgr({

@@ -97,7 +97,8 @@ export default function ExpensesList() {
 
       {/* Filter Modal */}
       {isFilterModalOpen && (
-        <Modal isOpen={isFilterModalOpen} onClose={() => setIsFilterModalOpen(false)} title="Filter Expenses">
+        <Modal isOpen={isFilterModalOpen} onClose={() => setIsFilterModalOpen(false)}>
+        <h2 className="text-lg font-semibold text-gray-800 dark:text-white">Filter Expenses</h2>
           <div>
             <label className="block text-sm font-medium text-gray-700">Category</label>
             <input
@@ -118,7 +119,7 @@ export default function ExpensesList() {
             />
           </div>
           <div className="mt-4 flex justify-end">
-            <Button variant="secondary" size="sm" onClick={handleResetFilters}>
+            <Button variant="outline" size="sm" onClick={handleResetFilters}>
               Reset
             </Button>
             <Button variant="primary" size="sm" onClick={handleFilter}>

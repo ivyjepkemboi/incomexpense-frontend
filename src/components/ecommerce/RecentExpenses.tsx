@@ -309,7 +309,7 @@ const [filteredSubcategories, setFilteredSubcategories] = useState([]);
             />
           </div>
           <div className="mt-4 flex justify-end">
-            <Button variant="secondary" size="sm" onClick={() => setIsFilterModalOpen(false)}>
+            <Button variant="outline" size="sm" onClick={() => setIsFilterModalOpen(false)}>
               Cancel
             </Button>
             <Button variant="primary" size="sm" onClick={handleFilter}>
