@@ -3,9 +3,7 @@
       "env": {
         "TSC_COMPILE_ON_ERROR": "true"
       }
-    }
-  }
-  {
+    },
     "rewrites": [
       { "source": "/dashboard", "destination": "/index.html" },
       { "source": "/expenses", "destination": "/index.html" },
