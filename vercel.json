@@ -5,4 +5,11 @@
       }
     }
   }
+  {
+    "rewrites": [
+      { "source": "/dashboard", "destination": "/index.html" },
+      { "source": "/expenses", "destination": "/index.html" },
+      { "source": "/profile", "destination": "/index.html" }
+    ]
+  }
   
