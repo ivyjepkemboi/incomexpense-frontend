@@ -3,7 +3,6 @@ import Button from "../../components/ui/button/Button";
 import { BoxIcon } from "../../icons/";
 import { Modal } from "../../components/ui/modal";
 import { ChevronDownIcon } from "@heroicons/react/24/solid";
-import RecentExpenses from "../ecommerce/RecentExpenses";
 import { BASE_URL } from "../../api";
 import { useNavigate } from "react-router";
 
