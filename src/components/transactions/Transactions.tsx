@@ -5,6 +5,7 @@ import { Modal } from "../../components/ui/modal";
 import { ChevronDownIcon } from "@heroicons/react/24/solid";
 import RecentExpenses from "../ecommerce/RecentExpenses";
 import { BASE_URL } from "../../api";
+import { useNavigate } from "react-router";
 
 export default function Transactions() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -21,6 +22,10 @@ export default function Transactions() {
   const [subcategoryDropdownOpen, setSubcategoryDropdownOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+
+
+  
+const navigate = useNavigate();
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -134,6 +139,7 @@ export default function Transactions() {
       if (!response.ok) throw new Error(data.error || "Failed to save transaction");
 
       setIsModalOpen(false);
+      navigate("/dashboard");
       
     } catch (err) {
       setError(err.message);
