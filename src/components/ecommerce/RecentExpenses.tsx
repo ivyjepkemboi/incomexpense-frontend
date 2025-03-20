@@ -6,7 +6,7 @@ import Button from "../ui/button/Button";
 import { ChevronDownIcon } from "@heroicons/react/24/solid";
 import { BASE_URL } from "../../api";
 
-export default function RecentExpenses() {
+export default function RecentExpenses({ transactions }) { // ✅ Receive transactions as a prop
   const [expenses, setExpenses] = useState([]);
   const [filteredExpenses, setFilteredExpenses] = useState([]);
   const [loading, setLoading] = useState(true);

@@ -80,7 +80,7 @@ export default function Home() {
           <RecentIncome />
         </div>
         <div className="col-span-12 xl:col-span-6">
-          <RecentExpenses />
+        <RecentExpenses transactions={transactions} /> {/* ✅ Pass transactions */}
         </div>
       </div>
     </>
