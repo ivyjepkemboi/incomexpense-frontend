@@ -18,9 +18,9 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [refreshData, setRefreshData] = useState(false);
+  const [transactions, setTransactions] = useState([])
 
-  useEffect(() => {
-    const fetchData = async () => {
+  const fetchData = async () => {
       try {
         const token = localStorage.getItem("token");
         if (!token) {
@@ -59,14 +59,15 @@ export default function Home() {
       }
     };
 
-    fetchData();
-  }, [refreshData]);
+    useEffect(() => {
+      fetchData();
+    }, []);
 
   return (
     <>
       <PageMeta title="Income - Expense Tracker" description="This is an income-expense tracker" />
       <AppHeader />
-      <Transactions setRefreshData={setRefreshData} />
+      <Transactions transactions={transactions} setTransactions={setTransactions} /> {/* ✅ Pass transactions */}
       <div className="grid grid-cols-12 gap-4 md:gap-6">
         <div className="col-span-12 space-y-6 xl:col-span-7">
           <Income totalIncome={totalIncome} totalExpenses={totalExpenses} />

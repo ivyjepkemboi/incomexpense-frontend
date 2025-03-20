@@ -6,7 +6,7 @@ import { ChevronDownIcon } from "@heroicons/react/24/solid";
 import { BASE_URL } from "../../api";
 import { useNavigate } from "react-router";
 
-export default function Transactions({ setRefreshData }) {
+export default function Transactions({ transactions, setTransactions }) { // ✅ Receive transactions from Home.jsx
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalContent, setModalContent] = useState("");
   const [amount, setAmount] = useState("");
@@ -138,7 +138,8 @@ const navigate = useNavigate();
       if (!response.ok) throw new Error(data.error || "Failed to save transaction");
 
       setIsModalOpen(false);
-      setRefreshData(prev => !prev);
+       // ✅ Update the transactions list immediately in Home.jsx
+       setTransactions([newTransaction, ...transactions]);
       
     } catch (err) {
       setError(err.message);
