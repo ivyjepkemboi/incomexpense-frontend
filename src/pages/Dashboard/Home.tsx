@@ -17,6 +17,7 @@ export default function Home() {
   const [totalExpenses, setTotalExpenses] = useState(0);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [refreshData, setRefreshData] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -59,13 +60,13 @@ export default function Home() {
     };
 
     fetchData();
-  }, []);
+  }, [refreshData]);
 
   return (
     <>
       <PageMeta title="Income - Expense Tracker" description="This is an income-expense tracker" />
       <AppHeader />
-      <Transactions />
+      <Transactions setRefreshData={setRefreshData} />
       <div className="grid grid-cols-12 gap-4 md:gap-6">
         <div className="col-span-12 space-y-6 xl:col-span-7">
           <Income totalIncome={totalIncome} totalExpenses={totalExpenses} />

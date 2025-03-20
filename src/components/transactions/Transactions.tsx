@@ -7,7 +7,7 @@ import RecentExpenses from "../ecommerce/RecentExpenses";
 import { BASE_URL } from "../../api";
 import { useNavigate } from "react-router";
 
-export default function Transactions() {
+export default function Transactions({ setRefreshData }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalContent, setModalContent] = useState("");
   const [amount, setAmount] = useState("");
@@ -139,7 +139,7 @@ const navigate = useNavigate();
       if (!response.ok) throw new Error(data.error || "Failed to save transaction");
 
       setIsModalOpen(false);
-      navigate("/dashboard");
+      setRefreshData(prev => !prev);
       
     } catch (err) {
       setError(err.message);
