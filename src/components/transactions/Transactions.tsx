@@ -134,7 +134,7 @@ export default function Transactions() {
       if (!response.ok) throw new Error(data.error || "Failed to save transaction");
 
       setIsModalOpen(false);
-      window.location.reload();
+      
     } catch (err) {
       setError(err.message);
     } finally {
