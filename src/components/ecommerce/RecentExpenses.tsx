@@ -6,10 +6,10 @@ import Button from "../ui/button/Button";
 import { ChevronDownIcon } from "@heroicons/react/24/solid";
 import { BASE_URL } from "../../api";
 
-export default function RecentExpenses({ transactions }) { // ✅ Receive transactions as a prop
+export default function RecentExpenses({ transactions, loading }) {
+
   const [expenses, setExpenses] = useState([]);
   const [filteredExpenses, setFilteredExpenses] = useState([]);
-  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState("");
@@ -68,8 +68,8 @@ const [filteredSubcategories, setFilteredSubcategories] = useState([]);
   };
 
   useEffect(() => {
-    fetchExpenses();
-  }, []);
+    setFilteredExpenses(transactions);
+  }, [transactions]);
 
   const handleFilter = () => {
     let filtered = expenses;
@@ -272,7 +272,7 @@ const [filteredSubcategories, setFilteredSubcategories] = useState([]);
                       {new Date(expense.timestamp).toLocaleDateString()}
                     </TableCell>
                     <TableCell className="py-3 flex gap-2">
-                      <Button size="sm" variant="primary" onClick={() => handleEditClick(expense)}>
+                      <Button size="sm" variant="danger" onClick={() => handleEditClick(expense)}>
                         Edit
                       </Button>
                       <Button size="sm" variant="danger" onClick={() => handleDeleteClick(expense)}>

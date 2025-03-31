@@ -6,7 +6,7 @@ import { ChevronDownIcon } from "@heroicons/react/24/solid";
 import { BASE_URL } from "../../api";
 import { useNavigate } from "react-router";
 
-export default function Transactions({ transactions, setTransactions }) { // ✅ Receive transactions from Home.jsx
+export default function Transactions({ transactions, setTransactions, fetchData }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalContent, setModalContent] = useState("");
   const [amount, setAmount] = useState("");
@@ -117,6 +117,7 @@ const navigate = useNavigate();
           source,
           amount: parseFloat(amount),
           description,
+          timestamp: new Date().toISOString(),
         };
       } else {
         transactionData = {
@@ -125,12 +126,16 @@ const navigate = useNavigate();
           subcategory,
           amount: parseFloat(amount),
           description,
+          timestamp: new Date().toISOString(),
         };
       }
 
       const response = await fetch(`${BASE_URL}/api/transactions`, {
         method: "POST",
-        headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
         body: JSON.stringify(transactionData),
       });
 
@@ -138,9 +143,10 @@ const navigate = useNavigate();
       if (!response.ok) throw new Error(data.error || "Failed to save transaction");
 
       setIsModalOpen(false);
-       // ✅ Update the transactions list immediately in Home.jsx
-       setTransactions([newTransaction, ...transactions]);
       
+      // ✅ Re-fetch transactions after adding a new one
+      await fetchData();
+
     } catch (err) {
       setError(err.message);
     } finally {
